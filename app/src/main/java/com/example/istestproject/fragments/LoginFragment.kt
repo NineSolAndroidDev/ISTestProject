@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -104,9 +105,12 @@ class LoginFragment : Fragment(), View.OnClickListener {
             when (it) {
 
                 is RequestStates.Loading -> {
+
+                    loginBinding.progressCircular.isVisible = true
                     // TODO show loader or animation what ever you want
                 }
                 is RequestStates.Success -> {
+                    loginBinding.progressCircular.isVisible = false
                     // when api response was successfully received when send token to the next fragment using nav controller
                     val token = it.data.toString()
                     val action =
@@ -117,7 +121,7 @@ class LoginFragment : Fragment(), View.OnClickListener {
 
                 }
                 is RequestStates.Error -> {
-
+                    loginBinding.progressCircular.isVisible = false
 
                     // display error message to the user
                     requireContext().showToast(it.message.toString(), 0)
