@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/loginFragment">
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.istestproject.fragments.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_loginFragment_to_viewItemDetails"
+            app:destination="@id/viewItemDetails" />
+    </fragment>
+    <fragment
+        android:id="@+id/viewItemDetails"
+        android:name="com.example.istestproject.fragments.ViewItemDetails"
+        android:label="fragment_view_item_details"
+        tools:layout="@layout/fragment_view_item_details">
+        <argument
+            android:name="currentToken"
+            android:defaultValue="@null"
+            app:argType="string"
+            app:nullable="true" />
+        <action
+            android:id="@+id/action_viewItemDetails_to_detailsListFragment"
+            app:destination="@id/detailsListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailsListFragment"
+        android:name="com.example.istestproject.fragments.DetailsListFragment"
+        android:label="fragment_details_list"
+        tools:layout="@layout/fragment_details_list">
+        <action
+            android:id="@+id/action_detailsListFragment_to_viewItemDetails"
+            app:destination="@id/viewItemDetails" />
+        <action
+            android:id="@+id/action_detailsListFragment_to_viewItemDetails2"
+            app:destination="@id/viewItemDetails"
+            app:popUpTo="@id/viewItemDetails" />
+        <argument
+            android:name="requestToken"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="@null" />
+    </fragment>
+</navigation>
